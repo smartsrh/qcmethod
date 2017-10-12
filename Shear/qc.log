@@ -1,10 +1,7 @@
 
---Log Entry    1      2017-10-12 11:39
+--Log Entry    1      2017-10-12 17:14
 QC simulation started.
 Title = nano-tribology
 
---Log Entry    2      2017-10-12 11:39
-QC simulation terminated due to error.
-*** ERROR: Point outside all grains:
-           Point coordinates =     0.97694E+03    0.16920E+04
-           (subroutine FindGrainPoly)
+--Log Entry    2      2017-10-12 17:14
+QC simulation terminated.

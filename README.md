@@ -7,10 +7,18 @@ Brief Description: a crack in FCC Ni single crystal
 
 ## Description: 
 
-This example want to insert an inner crack or internal boundary conditon in QC. The Ni is modeled used the Universal 3
-form of the Foiles, Baskes and Daw EAM potential. The crytal is intended to be a rectangule, turned out to be an abnormal geometry with an error `Point outside all grains` when running the code. Though the code insert the inner crack successfully, the error and its frustrating shape make the code futile. 
+This example is designed to insert an inner crack or internal boundary conditon in QC. The Ni is modeled used the Universal 3
+form of the Foiles, Baskes and Daw EAM potential. To insert an inner crack,
 
-[A similar question](https://groups.google.com/forum/#!topic/qcmethod/QNEJ3tRutHM) asked by another person in QC forum is also waiting for answer. I wonder if anybody can help me solve this problem.
+1. we should apply different algorithms to outer boundaries and inner boundaries.
+
+      - Dealing with the outer first, iterate each vertex, get outer boundary nodes with linear interpolation in counter-clockwise. This procedure is similar to finding boundaries for a simple rectangle.
+
+      - Then with inner, iterate each vertex, get inner boundary nodes with linear interpolation in clockwise, and make the last node in `elist` point to the start point of the iteration. 
+
+      - Most importantly, in `.geo` file we should list the vertexes in a special sequence, by which we can draw the outline of our geometry without intersections.  The start and end point of outer or inner should be the same, namely, there are 6 vertexes if the outer is a tectangular.
+
+[A similar question](https://groups.google.com/forum/#!topic/qcmethod/QNEJ3tRutHM) asked by another person in QC forum is also waiting for answer. I think my code is a proper way to answer that question.
 
 ## Directory contents:
 

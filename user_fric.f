@@ -158,9 +158,14 @@ c     Parse input
          idum=numnp+1
 
          call GetGrainNumVrts(i,numvrts)
+
+C        Dealing with the outer first iterate each vertex, 
+C        get outer boundary nodes with linear interpolation 
+C        in counter-clockwise
+
          do j=1,numvrts/2
             j2=j+1
-            if(j2.gt.(numvrts/2)) j2=j2-4
+            if(j2.gt.(numvrts/2)) j2=1
             call GetGrainVertex(i,j,vertex)
             call GetGrainVertex(i,j2,vertex_next)
             vec=vertex_next(1:2)-vertex(1:2)
@@ -201,7 +206,11 @@ c     Parse input
          elist(2,nce)=idum
          endofout=nce
          
-         do j=numvrts/2 + 1, numvrts
+C        then with inner, 
+C        iterate each vertex, 
+C        get inner boundary nodes with linear interpolation in clockwise, 
+
+         do j=(numvrts)/2+1, numvrts
             j2=j+1
             if(j2.gt.(numvrts)) j2 = numvrts / 2 + 1
             call GetGrainVertex(i,j,vertex)
@@ -226,6 +235,10 @@ c     Parse input
  1030          continue
             enddo            
          enddo
+
+C        and make the last node in `elist` 
+C        point to the start point of the iteration
+
          elist(2,nce) = endofout + 1
 
       enddo
