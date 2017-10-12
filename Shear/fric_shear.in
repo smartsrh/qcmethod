@@ -1,0 +1,62 @@
+head nano-tribology
+10000,20000
+
+% initialize flag settings
+flag,Nlocon,T
+flag,Surfon,F
+flag,Grainon,T
+flag,Ghoston,F
+
+% initialize factor settings
+fact,PROXFACT,2.0
+fact,ADAPFACT,0.0
+fact,CUTFACT,1.5
+fact,epscr,0.15
+
+% read in material definitions
+mate,,1,../../Potentials/ni_fbd3
+
+% read in grain information
+grains,file,friction
+
+% read in constitutive information
+cons,func,1,../../Potentials/ni_fbd3
+
+% generate a simple coarse mesh
+mesh,,10,10
+
+end
+
+macros
+tole,,1.0d-6
+proportional,,2,,0.,0.,1000.,1000.
+
+plot,disp,shear0,0,1.,1.
+
+% compute local/nonlocal status and automatically 
+% refine nonlocal regions
+status
+plot,disp,shear0,0,1.,1.
+
+% plot,repatom,repatom
+
+% dtime,,0.6d0
+% time
+% dtime,,1.0d0
+% loop,time,1
+%    bcon
+%    loop,,200
+%       tang
+%       solve,cg,1.0,10000,1
+%       status,update
+%       convergence,force
+%    next
+%    plot,disp,shear-relaxed,0,1.,1.
+%    plot,stre,shear-relaxed,0,1.,1.
+%    report
+%    pdel,,p-delta
+%    restart,write,shear
+%    time
+% next,time
+end
+stop

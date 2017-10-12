@@ -1,0 +1,460 @@
+   
+   ----------------------------------------------------------------------------
+   
+   q u a s i c o n t i n u u m   m e t h o d   s i m u l a t i o n
+   
+   Quasicontinuum (QC) Method: Mixed Continuum and Atomistic Simulation Package
+   QC Package distribution version 1.4 (November 2011)
+   
+   Copyright (C) 2003 R. Miller, D. Rodney, M. Ortiz, R. Phillips,
+                      V. B. Shenoy and E. B. Tadmor
+   Copyright (C) 2004, 2005, 2006, 2007, 2011 R. Miller and E. B. Tadmor
+   
+   Visit the QC website at www.qcmethod.com
+   
+   ----------------------------------------------------------------------------
+   
+   
+   nano-tribology
+
+ **setting flag**
+   NlocOn = TRUE
+
+ **setting flag**
+   SurfOn = FALSE
+
+ **setting flag**
+   GrainOn = TRUE
+
+ **setting flag**
+   GhostOn = FALSE
+
+ **setting factor**
+   PROXFACT =  2.000
+
+ **setting factor**
+   ADAPFACT =  0.000
+
+ **setting factor**
+   CUTFACT = 1.500
+
+ **setting factor**
+   epscr = 0.15000E+00
+
+ **reading material data**
+   opening material data file ../../Potentials/ni_fbd3.mat
+   
+   material information
+   
+   Mat # 1 : Ni(fcc) - fbd/u3
+   Bravais lattice vectors:
+   a1 =    0.00000   1.76000   1.76000
+   a2 =    1.76000   0.00000   1.76000
+   a3 =    1.76000   1.76000   0.00000
+   Atomic Species = 28
+
+ **reading grain information**
+   opening grain information file friction.geo
+   
+   grain information
+   
+   Number of Grains   =   1
+   ==================================================
+     Grain    1
+       Material    1   Ni(fcc) - fbd/u3
+       Reference Atom at
+           0.000004000.00000   0.00000
+       Lattice Vectors
+           0.70711  -0.70711   0.00000
+          -0.57735  -0.57735  -0.57735
+           0.40825   0.40825  -0.81650
+       Rotation (degrees)    0.00000
+       Number of vertices =    8
+           0.28675E+04    0.52230E+04  F
+          -0.28675E+04    0.52230E+04  F
+          -0.28675E+04    0.20000E+02  F
+           0.28675E+04    0.20000E+02  F
+          -0.12445E+01    0.17643E+04  F
+          -0.12445E+01    0.35087E+04  T
+           0.12445E+01    0.35087E+04  F
+           0.12445E+01    0.17643E+04  F
+       Cell Structure
+       Wigner-Sietz Area :        2.5291798090817239
+       Cell dimensions
+           2.48902   6.09682   4.31110
+       Cell Bravais Lattice sites :   6
+           0.00000E+00    0.00000E+00    0.00000E+00
+           0.12445E+01    0.00000E+00    0.21556E+01
+           0.00000E+00    0.20323E+01    0.28741E+01
+           0.12445E+01    0.20323E+01    0.71852E+00
+           0.00000E+00    0.40645E+01    0.14370E+01
+           0.12445E+01    0.40645E+01    0.35926E+01
+       Radius of representative crystal :   14.934095
+       Number of atoms in crystallite :  1289
+   ==================================================
+
+ **reading constitutive information**
+   opening constitutive information file ../../Potentials/ni_fbd3.fcn
+   
+   constitutive information
+   
+   type  element     amass        alat     lattype      rcut
+   ----  -------  ----------  ----------  --------  ----------
+      1     28      58.71000     3.52000  FCC          4.80000
+   grain reference energy, stress and moduli
+   
+   ==========================================================================
+     Grain    1
+   
+     energy density =    -0.4081238851
+   
+     stress (should be zero)
+        0.75139E-07  -0.46291E-18   0.10222E-16
+       -0.46291E-18   0.75139E-07   0.10280E-17
+        0.10222E-16   0.10280E-17   0.75139E-07
+   
+     elastic stiffness matrix (in grain c.s.) 11 22 33 12 13 23 convention
+          2.00631     0.59628     0.77968     0.00000     0.00000     0.25936
+          0.59628     2.18971     0.59628    -0.00000    -0.00000    -0.00000
+          0.77968     0.59628     2.00631     0.00000    -0.00000    -0.25936
+          0.00000    -0.00000     0.00000     0.42992     0.25936    -0.00000
+          0.00000    -0.00000    -0.00000     0.25936     0.61332     0.00000
+          0.25936    -0.00000    -0.25936    -0.00000     0.00000     0.42992
+   ==========================================================================
+
+ **generating mesh**
+   
+   Generating uniform mesh for friction test problem
+   
+   # x-elements           =   10
+   # y-elements           =   10
+   
+   display vec:
+    from    to    x     y
+       1      2   -5735.00000       0.00000
+   
+   display nodes on the last edge:
+       1    2866.10177    5221.39604
+   
+   display nodes on the last edge:
+       2    2293.62812    5221.39604
+   
+   display nodes on the last edge:
+       3    1719.90997    5221.39604
+   
+   display nodes on the last edge:
+       4    1147.43632    5221.39604
+   
+   display nodes on the last edge:
+       5     573.71816    5221.39604
+   
+   display nodes on the last edge:
+       6       0.00000    5221.39604
+   
+   display nodes on the last edge:
+       7    -573.71816    5221.39604
+   
+   display nodes on the last edge:
+       8   -1147.43632    5221.39604
+   
+   display nodes on the last edge:
+       9   -1719.90997    5221.39604
+   
+   display nodes on the last edge:
+      10   -2293.62812    5221.39604
+   
+   display vec:
+    from    to    x     y
+       2      3       0.00000   -5203.00000
+   
+   display nodes on the last edge:
+      11   -2867.34628    5221.39604
+   
+   display nodes on the last edge:
+      12   -2867.34628    4703.16644
+   
+   display nodes on the last edge:
+      13   -2867.34628    4182.90457
+   
+   display nodes on the last edge:
+      14   -2867.34628    3662.64269
+   
+   display nodes on the last edge:
+      15   -2867.34628    3142.38082
+   
+   display nodes on the last edge:
+      16   -2867.34628    2622.11894
+   
+   display nodes on the last edge:
+      17   -2867.34628    2101.85707
+   
+   display nodes on the last edge:
+      18   -2867.34628    1581.59519
+   
+   display nodes on the last edge:
+      19   -2867.34628    1061.33332
+   
+   display nodes on the last edge:
+      20   -2867.34628     541.07144
+   
+   display vec:
+    from    to    x     y
+       3      4    5735.00000       0.00000
+   
+   display nodes on the last edge:
+      21   -2867.34628      20.80957
+   
+   display nodes on the last edge:
+      22   -2293.62812      20.80957
+   
+   display nodes on the last edge:
+      23   -1719.90997      20.80957
+   
+   display nodes on the last edge:
+      24   -1147.43632      20.80957
+   
+   display nodes on the last edge:
+      25    -573.71816      20.80957
+   
+   display nodes on the last edge:
+      26       0.00000      20.80957
+   
+   display nodes on the last edge:
+      27     573.71816      20.80957
+   
+   display nodes on the last edge:
+      28    1147.43632      20.80957
+   
+   display nodes on the last edge:
+      29    1719.90997      20.80957
+   
+   display nodes on the last edge:
+      30    2293.62812      20.80957
+   
+   display vec:
+    from    to    x     y
+       4      1       0.00000    5203.00000
+   
+   display nodes on the last edge:
+      31    2866.10177      20.80957
+   
+   display nodes on the last edge:
+      32    2637.11231     159.00413
+   
+   display nodes on the last edge:
+      33    2404.38933     301.26324
+   
+   display nodes on the last edge:
+      34    2174.15536     441.49007
+   
+   display nodes on the last edge:
+      35    1942.67689     581.71690
+   
+   display nodes on the last edge:
+      36    1589.23663    3680.93315
+   
+   display nodes on the last edge:
+      37    1845.60527    3989.83864
+   
+   display nodes on the last edge:
+      38    2100.72939    4298.74412
+   
+   display nodes on the last edge:
+      39    2355.85352    4605.61734
+   
+   display nodes on the last edge:
+      40    2610.97765    4914.52283
+   
+   elist List:
+    elist    start  end
+       1      1      2
+       2      2      3
+       3      3      4
+       4      4      5
+       5      5      6
+       6      6      7
+       7      7      8
+       8      8      9
+       9      9     10
+      10     10     11
+      11     11     12
+      12     12     13
+      13     13     14
+      14     14     15
+      15     15     16
+      16     16     17
+      17     17     18
+      18     18     19
+      19     19     20
+      20     20     21
+      21     21     22
+      22     22     23
+      23     23     24
+      24     24     25
+      25     25     26
+      26     26     27
+      27     27     28
+      28     28     29
+      29     29     30
+      30     30     31
+      31     31     32
+      32     32     33
+      33     33     34
+      34     34     35
+      35     35     36
+      36     36     37
+      37     37     38
+      38     38     39
+      39     39     40
+      40     40      1
+      41     41     42
+      42     42     43
+      43     43     44
+      44     44     45
+      45     45     46
+      46     46     47
+      47     47     48
+      48     48     49
+      49     49     50
+      50     50     51
+      51     51     52
+      52     52     53
+      53     53     54
+      54     54     55
+      55     55     56
+      56     56     57
+      57     57     58
+      58     58     59
+      59     59     60
+      60     60     61
+      61     61     62
+      62     62     63
+      63     63     41
+   Node List:
+    node        x             y
+       1    2866.10177    5221.39604
+       2    2293.62812    5221.39604
+       3    1719.90997    5221.39604
+       4    1147.43632    5221.39604
+       5     573.71816    5221.39604
+       6       0.00000    5221.39604
+       7    -573.71816    5221.39604
+       8   -1147.43632    5221.39604
+       9   -1719.90997    5221.39604
+      10   -2293.62812    5221.39604
+      11   -2867.34628    5221.39604
+      12   -2867.34628    4703.16644
+      13   -2867.34628    4182.90457
+      14   -2867.34628    3662.64269
+      15   -2867.34628    3142.38082
+      16   -2867.34628    2622.11894
+      17   -2867.34628    2101.85707
+      18   -2867.34628    1581.59519
+      19   -2867.34628    1061.33332
+      20   -2867.34628     541.07144
+      21   -2867.34628      20.80957
+      22   -2293.62812      20.80957
+      23   -1719.90997      20.80957
+      24   -1147.43632      20.80957
+      25    -573.71816      20.80957
+      26       0.00000      20.80957
+      27     573.71816      20.80957
+      28    1147.43632      20.80957
+      29    1719.90997      20.80957
+      30    2293.62812      20.80957
+      31    2866.10177      20.80957
+      32    2637.11231     159.00413
+      33    2404.38933     301.26324
+      34    2174.15536     441.49007
+      35    1942.67689     581.71690
+      36    1589.23663    3680.93315
+      37    1845.60527    3989.83864
+      38    2100.72939    4298.74412
+      39    2355.85352    4605.61734
+      40    2610.97765    4914.52283
+      41      -1.24451    1764.49976
+      42      -1.24451    1939.27523
+      43      -1.24451    2114.05070
+      44      -1.24451    2286.79391
+      45      -1.24451    2461.56938
+      46      -1.24451    2636.34485
+      47      -1.24451    2811.12033
+      48      -1.24451    2985.89580
+      49      -1.24451    3160.67127
+      50      -1.24451    3333.41447
+      51      -1.24451    3508.18995
+      52       1.24451    3508.18995
+      53       1.24451    3333.41447
+      54       1.24451    3160.67127
+      55       1.24451    2985.89580
+      56       1.24451    2811.12033
+      57       1.24451    2636.34485
+      58       1.24451    2461.56938
+      59       1.24451    2286.79391
+      60       1.24451    2114.05070
+      61       1.24451    1939.27523
+      62       1.24451    1764.49976
+      63       0.00000    1762.46748
+   
+   **numnp =   144
+   **numel =   215
+
+ **global parameter settings**
+   
+   Number of nodal points (max) =   10000
+   Number of elements     (max) =   20000
+   Number of spatial dimensions =       2
+   Number of dofs per node      =       3
+   Number of nodes per element  =       3
+   Number of stress components  =       6
+   Number of internal variables =      14
+   
+   Critical nonlocality strain  =    0.15000
+   
+   Proximal nonlocality factor  =     2.0000
+   Adaptation nonlocal padding  =     0.0000
+   Effective cutoff factor      =     1.5000
+   
+   Non-locality                             = ACTIVATED
+   Ghost Force Correction                   = OFF
+   Free surface triggers for non-locality   = OFF
+   Grain Boundary triggers for non-locality = ACTIVATED
+   Nodes constrained to Bravais sites       = ACTIVATED
+   Prevention of Warped Elements            = OFF
+   Mesh Adaption in deformed configuration  = OFF
+   Dummy atoms allowed                      = ACTIVATED
+
+ **macro instructions**
+   
+  1   tole           1.0d-6
+  2   prop           2,,0.,0.,1000.,1000.
+  3   plot  disp     shear0,0,1.,1.
+  4   stat           
+  5   plot  disp     shear0,0,1.,1.
+  6   end            
+   
+
+ **start of macro execution**
+
+  1   tole           * Tolerance set to  0.10000E-05
+
+  2   prop           * Proportional load table:
+                              time         factor
+                         0.00000E+00    0.00000E+00
+                         0.10000E+04    0.10000E+04
+
+  3   plot  disp     * Opening formatted file: shear0_D001.plt
+
+  4   stat           * Updating representative atom data.
+                     * Computing repatom coordination.
+                     * Generating voronoi diagram.
+
+
+
+
+*** ERROR: Point outside all grains:
+           Point coordinates =     0.97694E+03    0.16920E+04
+           (subroutine FindGrainPoly)
+
+QC simulation terminated.
+

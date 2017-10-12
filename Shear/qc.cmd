@@ -1,0 +1,23 @@
+head nano-tribology                                                             
+10000,20000                                                                     
+flag,Nlocon,T                                                                   
+flag,Surfon,F                                                                   
+flag,Grainon,T                                                                  
+flag,Ghoston,F                                                                  
+fact,PROXFACT,2.0                                                               
+fact,ADAPFACT,0.0                                                               
+fact,CUTFACT,1.5                                                                
+fact,epscr,0.15                                                                 
+mate,,1,../../Potentials/ni_fbd3                                                
+grains,file,friction                                                            
+cons,func,1,../../Potentials/ni_fbd3                                            
+mesh,,10,10                                                                     
+end                                                                             
+macros                                                                          
+tole,,1.0d-6                                                                    
+proportional,,2,,0.,0.,1000.,1000.                                              
+plot,disp,shear0,0,1.,1.                                                        
+status                                                                          
+plot,disp,shear0,0,1.,1.                                                        
+end                                                                             
+stop                                                                            

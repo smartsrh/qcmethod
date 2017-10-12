@@ -1,0 +1,54 @@
+# Portland Group Inc. pgf90 6.2-5 64-bit
+#----------------------------------------------------------------
+# Target name and makefile name
+#
+TAGT = fric
+MAKF = makefric.pgi
+
+#------------------------------------------------------------------------
+# Directory names
+#
+ROOT = ../Friction-example
+MDLR = ../Code
+
+#------------------------------------------------------------------------
+# Problem specific object files and their dependencies
+#
+OBJ1  = user_fric.o 
+FIL1  = user_fric.f
+DEP1  = $(MDLR)/mod_grain.f $(MDLR)/mod_repatom.f $(MDLR)/mod_boundary.f  $(MDLR)/mod_global.f $(MDLR)/mod_output.f $(MDLR)/mod_qclib.f $(MDLR)/mod_pload.f
+
+#----------------------------------------------------------------
+# Fortran compile flags
+# 
+FF90  = -c -O2 -I$(MDLR) 
+FF90f  = -c -O2 -Mfree -I$(MDLR) 
+
+#----------------------------------------------------------------
+# Do all of these
+#
+all:
+	make -f $(MAKF) modular
+	make -f $(MAKF) $(TAGT)
+#----------------------------------------------------------------
+# Feap and Modular libraries
+#
+modular:
+	cd $(MDLR); make -f make.pgi
+#----------------------------------------------------------------
+# Targets 
+#
+$(TAGT): $(OBJ1) $(MDLR)/libmdlr.a $(MAKF)
+	pgf90 -I$(MDLR) -L$(MDLR) -lmdlr -o $(TAGT) $(OBJ1)
+
+$(OBJ1): $(DEP1) $(FIL1)
+	pgf90 $(FF90)  $(FIL1)
+
+#------------------------------------------------------------------------
+# Utilities
+#
+list:
+	ls -l $(ROOT)/*.f $(MDLR)/*.f
+
+tar:
+	tar cvf $(ROOT).tar $(ROOT)/*.f $(MDLR)/*.f $(ROOT)/mak* $(MDLR)/make*

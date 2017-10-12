@@ -1,0 +1,53 @@
+# SGI MIPSpro Fortran 90 compiler version 7.3 and less
+#----------------------------------------------------------------
+# Target name and makefile name
+#
+TAGT = fric
+MAKF = makefric.sgi
+
+#------------------------------------------------------------------------
+# Directory names
+#
+ROOT = ../Friction-example
+MDLR = ../Code
+
+#------------------------------------------------------------------------
+# Problem specific object files and their dependencies
+#
+OBJ1  = user_fric.o 
+DEP1  = $(MDLR)/mod_grain.f $(MDLR)/mod_repatom.f $(MDLR)/mod_boundary.f  $(MDLR)/mod_global.f $(MDLR)/mod_output.f $(MDLR)/mod_qclib.f $(MDLR)/mod_pload.f
+
+#----------------------------------------------------------------
+# Fortran compile flags
+# 
+FF90  = -c -O2 -I$(MDLR) 
+FF90f  = -c -O2 -free -I$(MDLR) 
+
+#----------------------------------------------------------------
+# Do all of these
+#
+all:
+	make -f $(MAKF) modular
+	make -f $(MAKF) $(TAGT)
+#----------------------------------------------------------------
+# Feap and Modular libraries
+#
+modular:
+	cd $(MDLR); make -f make.sgi
+#----------------------------------------------------------------
+# Targets 
+#
+$(TAGT): $(OBJ1) $(MDLR)/libmdlr.a $(MAKF)
+	f90 -o $(TAGT) $(MDLR)/qcmain.o $(OBJ1) -L$(MDLR) -lmdlr
+
+$(OBJ1): $(DEP1)
+	f90 $(FF90) $<
+
+#------------------------------------------------------------------------
+# Utilities
+#
+list:
+	ls -l $(ROOT)/*.f $(MDLR)/*.f
+
+tar:
+	tar cvf $(ROOT).tar $(ROOT)/*.f $(MDLR)/*.f $(ROOT)/mak* $(MDLR)/make*

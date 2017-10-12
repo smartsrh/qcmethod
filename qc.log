@@ -1,0 +1,8 @@
+
+--Log Entry    1      2017-10-11 11:02
+QC simulation started.
+Title = nano-tribology
+
+--Log Entry    2      2017-10-11 11:02
+QC simulation terminated due to error.
+*** ERROR: Material filename ../../Potentials/ni_fbd3.mat not found.
