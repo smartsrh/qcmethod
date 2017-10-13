@@ -16,7 +16,7 @@ form of the Foiles, Baskes and Daw EAM potential. To insert an inner crack,
 
       - Then with inner, iterate each vertex, get inner boundary nodes with linear interpolation in clockwise, and make the last node in `elist` point to the start point of the iteration. 
 
-      - Most importantly, in `.geo` file we should list the vertexes in a special sequence, by which we can draw the outline of our geometry without intersections.  The start and end point of outer or inner should be the same, namely, there are 6 vertexes if the outer is a tectangular.
+      - Most importantly, in `.geo` file we should list the vertexes in a special sequence, by which we can draw the outline of our geometry without intersections.  The start and end point of outer or inner should be the same, namely, there should be no less than 5 vertexes if the outer is a rectangular.
 
 [A similar question](https://groups.google.com/forum/#!topic/qcmethod/QNEJ3tRutHM) asked by another person in QC forum is also waiting for answer. I think my code is a proper way to answer that question.
 
